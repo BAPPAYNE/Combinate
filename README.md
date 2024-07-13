@@ -30,10 +30,10 @@ Run the script with Python, providing required arguments:
 python CombiGen.py <input_string> <max_length> -o <outputfile> --update_interval <update_interval> --chunk_size <chunk_size>
 ```
 ## Arguments:
-**<input_string>**: The input string to generate combinations from.
-**<max_length>**: The maximum length of combinations.
-**-o, --outputfile**: The output file to write combinations to.
-**--update_interval**: Interval (in combinations) of progress updates.
+**<input_string>**: The input string to generate combinations from. </br>
+**<max_length>**: The maximum length of combinations.</br>
+**-o, --outputfile**: The output file to write combinations to.</br>
+**--update_interval**: Interval (in combinations) of progress updates.</br>
 **--chunk_size**: Number of combinations to write to file at once.
 
 ## Example
