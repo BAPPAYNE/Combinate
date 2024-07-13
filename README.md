@@ -34,7 +34,7 @@ python CombiGen.py <input_string> <max_length> -o <outputfile> --update_interval
 `-m, --max_length`: The maximum length of combinations.</br>
 `-o, --outputfile`: The output file to write combinations to.</br>
 `-u, --update_interval`: Interval (in combinations) of progress updates.</br>
-`-c, --chunk_size`: Number of combinations to write to file at once.
+`-c, --chunk_size`: Number of combinations to write to file at once.</br>
 `-t, --num_threads`: Number of threads to use for combination generation and file writing. Default is 1.
 
 **Get Help**
