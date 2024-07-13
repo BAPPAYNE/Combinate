@@ -20,7 +20,7 @@ This tool requires Python 3.6 or higher.
    ```bash
    git clone https://github.com/your/repository.git
    cd repository
-
+   ```
 ## Usage
 
 **Command-Line Interface (CLI)**
@@ -36,13 +36,13 @@ python CombiGen.py <input_string> <max_length> -o <outputfile> --update_interval
 --update_interval: Interval (in combinations) of progress updates.
 --chunk_size: Number of combinations to write to file at once.
 
-**Example**
+# Example
 Generate combinations for the alphabet and numbers up to 8 characters long:
 ```bash
 python combination_generator.py "abcdefghijklmnopqrstuvwxyz1234567890" 8 -o output.txt --update_interval 1000 --chunk_size 10000
 ```
-**Output**
+# Output
 Upon execution, the tool will provide real-time progress updates and write the combinations to the specified output file (`output.txt` in this example).
 
-**License**
+## License
 This project is licensed under the MIT License - see the LICENSE file for details.
