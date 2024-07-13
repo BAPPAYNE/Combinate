@@ -6,26 +6,46 @@ This Python script generates all possible combinations of characters from a give
 
 ## Features
 
-- Generates combinations up to a specified length.
-- Estimates the total size of the output file.
-- Writes combinations directly to the file to avoid high memory usage.
-- Provides real-time progress updates.
-- Uses multithreading to improve file writing performance.
+- **Combination Generation**: Generates all possible combinations of characters from an input string.
+- **Maximum Length**: Supports specifying the maximum length of combinations.
+- **Real-time Progress Updates**: Provides live updates on progress including percentage completion, remaining combinations, and estimated time.
+- **Multithreading**: Utilizes multithreading to enhance performance by parallelizing combination generation and file writing.
+- **Command-Line Interface (CLI)**: Offers flexible command-line options for specifying input, output file, update interval, and chunk size.
 
-## Requirements
+## Python Version
 
-- Python 3.6 or higher
+This tool requires Python 3.6 or higher.
 
 ## Installation
 
-No additional packages are required.
+**Clone the Repository:**
+
+   ```bash
+   git clone https://github.com/your/repository.git
+   cd repository
 
 ## Usage
 
-1. Clone or download this repository to your local machine.
-2. Run the script with your desired input string and maximum combination length.
+**Command-Line Interface (CLI)**
 
-### Example
-
+Run the script with Python, providing required arguments:
 ```bash
-python combination_generator.py
+python CombiGen.py <input_string> <max_length> -o <outputfile> --update_interval <update_interval> --chunk_size <chunk_size>
+```
+**Arguments:**
+<input_string>: The input string to generate combinations from.
+<max_length>: The maximum length of combinations.
+-o, --outputfile: The output file to write combinations to.
+--update_interval: Interval (in combinations) of progress updates.
+--chunk_size: Number of combinations to write to file at once.
+
+**Example**
+Generate combinations for the alphabet and numbers up to 8 characters long:
+```bash
+python combination_generator.py "abcdefghijklmnopqrstuvwxyz1234567890" 8 -o output.txt --update_interval 1000 --chunk_size 10000
+```
+**Output**
+Upon execution, the tool will provide real-time progress updates and write the combinations to the specified output file (`output.txt` in this example).
+
+**License**
+This project is licensed under the MIT License - see the LICENSE file for details.
