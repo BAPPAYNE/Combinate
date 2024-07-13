@@ -18,8 +18,8 @@ This tool requires Python 3.6 or higher.
 **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/your/repository.git
-   cd repository
+   git clone [https://github.com/your/repository.git](https://github.com/BAPPAYNE/CombiGen)
+   cd CombiGen
    ```
 ## Usage
 
@@ -39,7 +39,7 @@ python CombiGen.py <input_string> <max_length> -o <outputfile> --update_interval
 ## Example
 Generate combinations for the alphabet and numbers up to 8 characters long:
 ```bash
-python combination_generator.py "abcdefghijklmnopqrstuvwxyz1234567890" 8 -o output.txt --update_interval 1000 --chunk_size 10000
+python CombiGen.py "abcdefghijklmnopqrstuvwxyz1234567890" 8 -o output.txt --update_interval 1000 --chunk_size 10000
 ```
 ## Output
 Upon execution, the tool will provide real-time progress updates and write the combinations to the specified output file (`output.txt` in this example).
