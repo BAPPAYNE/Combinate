@@ -30,16 +30,28 @@ Run the script with Python, providing required arguments:
 python CombiGen.py <input_string> <max_length> -o <outputfile> --update_interval <update_interval> --chunk_size <chunk_size>
 ```
 ## Arguments:
-**<input_string>**: The input string to generate combinations from. </br>
-**<max_length>**: The maximum length of combinations.</br>
-**-o, --outputfile**: The output file to write combinations to.</br>
-**--update_interval**: Interval (in combinations) of progress updates.</br>
-**--chunk_size**: Number of combinations to write to file at once.
+`<input_string>`: The input string to generate combinations from. </br>
+`-m, --max_length`: The maximum length of combinations.</br>
+`-o, --outputfile`: The output file to write combinations to.</br>
+`-u, --update_interval`: Interval (in combinations) of progress updates.</br>
+`-c, --chunk_size`: Number of combinations to write to file at once.
+`-t, --num_threads`: Number of threads to use for combination generation and file writing. Default is 1.
 
+**Get Help**
+Display the help menu:
+```bash
+python CombiGen.py -h
+```
 ## Example
 Generate combinations for the alphabet and numbers up to 8 characters long:
 ```bash
-python CombiGen.py "abcdefghijklmnopqrstuvwxyz1234567890" 8 -o output.txt --update_interval 1000 --chunk_size 10000
+python CombiGen.py "abcdefghijklmnopqrstuvwxyz1234567890" -m 8 -o output.txt --update_interval 1000 --chunk_size 10000 -t 2
+```
+Specific Lengths
+
+Generate combinations of specific lengths (e.g., 3 and 5):
+```bash
+python CombiGen.py "abc" -l 3 5 -o output.txt -t 2
 ```
 ## Output
 Upon execution, the tool will provide real-time progress updates and write the combinations to the specified output file (`output.txt` in this example).
