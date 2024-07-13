@@ -18,7 +18,7 @@ This tool requires Python 3.6 or higher.
 **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/your/repository.git
+   git clone https://github.com/BAPPAYNE/CombiGen.git
    cd CombiGen
    ```
 ## Usage
