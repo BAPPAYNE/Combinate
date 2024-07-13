@@ -1,7 +1,4 @@
-# CombiGen-Efficient-Combination-Generator
-The CombiGen is a Python script designed to generate all possible combinations of characters from a given input string up to a specified maximum length. It efficiently writes these combinations to a file while providing real-time progress updates.
-# Combination Generator
-
+# CombiGen: Efficient Combination Generator
 This Python script generates all possible combinations of characters from a given input string up to a specified maximum length and writes them to a file. The script is optimized for performance and memory efficiency, and it uses multithreading for improved I/O operations.
 
 ## Features
