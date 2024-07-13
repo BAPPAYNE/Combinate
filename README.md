@@ -1,4 +1,4 @@
-# CombiGen: Efficient Combination Generator
+# Combinate: Efficient Combination Generator
 This Python script generates all possible combinations of characters from a given input string up to a specified maximum length and writes them to a file. The script is optimized for performance and memory efficiency, and it uses multithreading for improved I/O operations.
 
 ## Features
@@ -18,8 +18,8 @@ This tool requires Python 3.6 or higher.
 **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/BAPPAYNE/CombiGen.git
-   cd CombiGen
+   git clone https://github.com/BAPPAYNE/Combinate.git
+   cd Combinate
    ```
 ## Usage
 
@@ -27,7 +27,7 @@ This tool requires Python 3.6 or higher.
 
 Run the script with Python, providing required arguments:
 ```bash
-python CombiGen.py <input_string> <max_length> -o <outputfile> --update_interval <update_interval> --chunk_size <chunk_size>
+python Combinate.py <input_string> <max_length> -o <outputfile> --update_interval <update_interval> --chunk_size <chunk_size>
 ```
 ## Arguments:
 `<input_string>`: The input string to generate combinations from. </br>
@@ -40,18 +40,18 @@ python CombiGen.py <input_string> <max_length> -o <outputfile> --update_interval
 **Get Help**
 Display the help menu:
 ```bash
-python CombiGen.py -h
+python Combinate.py -h
 ```
 ## Example
 Generate combinations for the alphabet and numbers up to 8 characters long:
 ```bash
-python CombiGen.py "abcdefghijklmnopqrstuvwxyz1234567890" -m 8 -o output.txt --update_interval 1000 --chunk_size 10000 -t 2
+python Combinate.py "abcdefghijklmnopqrstuvwxyz1234567890" -m 8 -o output.txt --update_interval 1000 --chunk_size 10000 -t 2
 ```
 Specific Lengths
 
 Generate combinations of specific lengths (e.g., 3 and 5):
 ```bash
-python CombiGen.py "abc" -l 3 5 -o output.txt -t 2
+python Combinate.py "abc" -l 3 5 -o output.txt -t 2
 ```
 ## Output
 Upon execution, the tool will provide real-time progress updates and write the combinations to the specified output file (`output.txt` in this example).
