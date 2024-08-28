@@ -35,7 +35,8 @@ python Combinate.py <input_string> <max_length> -o <outputfile> --update_interva
 `-o, --outputfile`: The output file to write combinations to.</br>
 `-u, --update_interval`: Interval (in combinations) of progress updates.</br>
 `-c, --chunk_size`: Number of combinations to write to file at once.</br>
-`-t, --num_threads`: Number of threads to use for combination generation and file writing. Default is 1.
+`-t, --num_threads`: Number of threads to use for combination generation and file writing. Default is 1.</br>
+`-r, --repeat`: Allows character repeatation (By default OFF).
 
 **Get Help**
 Display the help menu:
@@ -51,7 +52,7 @@ Specific Lengths
 
 Generate combinations of specific lengths (e.g., 3 and 5):
 ```bash
-python Combinate.py "abc" -l 3 5 -o output.txt -t 2
+python Combinate.py "abc" -l 3 5 -o output.txt -t 2 -r
 ```
 ## Output
 Upon execution, the tool will provide real-time progress updates and write the combinations to the specified output file (`output.txt` in this example).
