@@ -1,26 +1,38 @@
 import argparse
 import time
 import os
-from itertools import combinations, chain
+from itertools import combinations, product
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-def generate_combinations(input_string, max_length, specified_lengths=None):
+def generate_combinations(input_string, max_length, allow_repeats=False, specified_lengths=None):
     if specified_lengths:
         lengths_to_generate = specified_lengths
     else:
         lengths_to_generate = range(1, max_length + 1)
 
     for length in lengths_to_generate:
-        for comb in combinations(input_string, length):
-            yield ''.join(comb)
+        if allow_repeats:
+            for comb in product(input_string, repeat=length):
+                yield ''.join(comb)
+        else:
+            for comb in combinations(input_string, length):
+                yield ''.join(comb)
 
-def estimate_file_size(input_string, max_length, specified_lengths=None):
+def estimate_file_size(input_string, max_length, allow_repeats=False, specified_lengths=None):
     if specified_lengths:
-        total_combinations = sum(len(list(combinations(input_string, i))) for i in specified_lengths)
-        average_length = sum(i * len(list(combinations(input_string, i))) for i in specified_lengths) / total_combinations
+        if allow_repeats:
+            total_combinations = sum(len(input_string) ** i for i in specified_lengths)
+            average_length = sum(i * (len(input_string) ** i) for i in specified_lengths) / total_combinations
+        else:
+            total_combinations = sum(len(list(combinations(input_string, i))) for i in specified_lengths)
+            average_length = sum(i * len(list(combinations(input_string, i))) for i in specified_lengths) / total_combinations
     else:
-        total_combinations = sum(len(list(combinations(input_string, i))) for i in range(1, max_length + 1))
-        average_length = sum(i * len(list(combinations(input_string, i))) for i in range(1, max_length + 1)) / total_combinations
+        if allow_repeats:
+            total_combinations = sum(len(input_string) ** i for i in range(1, max_length + 1))
+            average_length = sum(i * (len(input_string) ** i) for i in range(1, max_length + 1)) / total_combinations
+        else:
+            total_combinations = sum(len(list(combinations(input_string, i))) for i in range(1, max_length + 1))
+            average_length = sum(i * len(list(combinations(input_string, i))) for i in range(1, max_length + 1)) / total_combinations
     
     estimated_size_bytes = int((average_length + 1) * total_combinations)  # +1 for the newline character
     estimated_size_mb = estimated_size_bytes / (1024 * 1024)  # Convert bytes to MB
@@ -31,8 +43,8 @@ def write_chunk(file_path, chunk):
         file.writelines(chunk)
         file.flush()  # Flush the file buffer to ensure real-time write
 
-def write_combinations_to_file(input_string, max_length, file_path, update_interval=1000, chunk_size=10000, num_threads=1, specified_lengths=None):
-    total_combinations, estimated_size_bytes, estimated_size_mb = estimate_file_size(input_string, max_length, specified_lengths)
+def write_combinations_to_file(input_string, max_length, file_path, update_interval=1000, chunk_size=10000, num_threads=1, allow_repeats=False, specified_lengths=None):
+    total_combinations, estimated_size_bytes, estimated_size_mb = estimate_file_size(input_string, max_length, allow_repeats, specified_lengths)
 
     print(f"Total Combinations: {total_combinations}")
     print(f"Estimated total file size: {estimated_size_bytes} bytes ({estimated_size_mb:.2f} MiB)")
@@ -53,7 +65,7 @@ def write_combinations_to_file(input_string, max_length, file_path, update_inter
     idx_start = 0
     with ThreadPoolExecutor(max_workers=num_threads) as executor:
         futures = []
-        for comb in generate_combinations(input_string, max_length, specified_lengths):
+        for comb in generate_combinations(input_string, max_length, allow_repeats, specified_lengths):
             chunk.append(f"{comb}\n")
             if len(chunk) >= chunk_size:
                 futures.append(executor.submit(write_chunk, file_path, chunk.copy()))
@@ -106,6 +118,7 @@ def main():
     parser.add_argument("-u","--update_interval", type=int, default=1000, help="Interval of progress updates.")
     parser.add_argument("-c","--chunk_size", type=int, default=10000, help="Number of combinations to write at once.")
     parser.add_argument("-t","--num_threads", type=int, default=1, help="Number of threads to use for combination generation and file writing.")
+    parser.add_argument("-r", "--repeat", action="store_true", help="Allow characters to repeat in combinations.")
 
     args = parser.parse_args()
 
@@ -115,7 +128,7 @@ def main():
     max_length = args.max_length if args.max_length else max(args.lengths)
     specified_lengths = args.lengths if args.lengths else None
 
-    write_combinations_to_file(args.input_string, max_length, args.outputfile, args.update_interval, args.chunk_size, args.num_threads, specified_lengths)
+    write_combinations_to_file(args.input_string, max_length, args.outputfile, args.update_interval, args.chunk_size, args.num_threads, args.repeat, specified_lengths)
 
 if __name__ == "__main__":
     main()
