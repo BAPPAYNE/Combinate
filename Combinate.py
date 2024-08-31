@@ -3,7 +3,7 @@ import time
 import os
 from itertools import combinations, product
 from concurrent.futures import ThreadPoolExecutor, as_completed
-
+num_threads = 5
 def generate_combinations(input_string, max_length, allow_repeats=False, specified_lengths=None):
     if specified_lengths:
         lengths_to_generate = specified_lengths
@@ -116,8 +116,8 @@ def main():
     parser.add_argument("-l","--lengths", type=int, nargs='+', help="Specific lengths of combinations to generate.")
     parser.add_argument("-o", "--outputfile", type=str, default="combinations.txt", help="The output file to write combinations to.")
     parser.add_argument("-u","--update_interval", type=int, default=1000, help="Interval of progress updates.")
-    parser.add_argument("-c","--chunk_size", type=int, default=10000, help="Number of combinations to write at once.")
-    parser.add_argument("-t","--num_threads", type=int, default=1, help="Number of threads to use for combination generation and file writing.")
+    parser.add_argument("-c","--chunk_size", type=int, default=10000, help="Number of combinations to write at once.(Bigger number = More Speed)")
+    # parser.add_argument("-t","--num_threads", type=int, default=5, help="Number of threads to use for combination generation and file writing.")
     parser.add_argument("-r", "--repeat", action="store_true", help="Allow characters to repeat in combinations.")
 
     args = parser.parse_args()
@@ -128,7 +128,8 @@ def main():
     max_length = args.max_length if args.max_length else max(args.lengths)
     specified_lengths = args.lengths if args.lengths else None
 
-    write_combinations_to_file(args.input_string, max_length, args.outputfile, args.update_interval, args.chunk_size, args.num_threads, args.repeat, specified_lengths)
+    # write_combinations_to_file(args.input_string, max_length, args.outputfile, args.update_interval, args.chunk_size, args.num_threads, args.repeat, specified_lengths)
 
+    write_combinations_to_file(args.input_string, max_length, args.outputfile, args.update_interval, args.chunk_size,num_threads, args.repeat, specified_lengths)
 if __name__ == "__main__":
     main()
